@@ -171,4 +171,42 @@ public class TestPeople {
         TestRemoveAll(toPopulate);
     }
 
+    public void TestFindById(Person[] populatingArray, Person expected, long idToFind){
+        // Given
+        People people = new People(new ArrayList<>(Arrays.asList(populatingArray)));
+
+        //When
+        Person actual = people.findById(idToFind);
+
+        //
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TestFindById1(){
+        Person p1 = new Person((long) 1, "a");
+        Person p2 = new Person((long) 2, "b");
+        Person p3 = new Person((long) 3, "c");
+        Person[] toPopulate = new Person[]{p1, p2, p3};
+        TestFindById(toPopulate, p1, 1);
+    }
+
+    @Test
+    public void TestFindById2(){
+        Person p1 = new Person((long) 1, "a");
+        Person p2 = new Person((long) 2, "b");
+        Person p3 = new Person((long) 3, "c");
+        Person[] toPopulate = new Person[]{p1, p2, p3};
+        TestFindById(toPopulate, p2, 2);
+    }
+
+    @Test
+    public void TestFindById3(){
+        Person p1 = new Person((long) 1, "a");
+        Person p2 = new Person((long) 2, "b");
+        Person p3 = new Person((long) 3, "c");
+        Person[] toPopulate = new Person[]{p1, p2, p3};
+        TestFindById(toPopulate, p3, 3);
+    }
+
 }
