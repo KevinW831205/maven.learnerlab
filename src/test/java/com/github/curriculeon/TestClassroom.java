@@ -9,27 +9,29 @@ public class TestClassroom {
         //given
         Classroom CLASSROOM = Classroom.getINSTANCE();
         Double expectedHours = 0D;
-
         //When
-        if(teacher != null){
+        if(teacher != null && Instructors.getINSTANCE().contains((Instructor) teacher)){
             for(Double hr : hours){
                 if(hr>0){
-                    expectedHours += hr;
+                    expectedHours += hr/Students.getINSTANCE().count();
                 }
                 CLASSROOM.hostLecture(teacher,hr);
             }
         }
 
-        if(teacherId != null){
+        if(teacherId != null && Instructors.getINSTANCE().findById(teacherId) != null){
             for(Double hr : hours){
                 if(hr>0){
-                    expectedHours += hr;
+                    expectedHours += hr/Students.getINSTANCE().count();
                 }
                 CLASSROOM.hostLecture(teacherId,hr);
             }
         }
 
         Double[] learnedHours = CLASSROOM.getStudyMap().toArray(new Double[0]);
+        for(Double x : learnedHours){
+            System.out.println(x);
+        }
         //Then
         System.out.println("Expected Hours "+expectedHours);
         for(Double actualHoursPerStudent : learnedHours){
@@ -47,7 +49,7 @@ public class TestClassroom {
     @Test
     public void classRoomTest1(){
         Instructor i1 = new Instructor((long) 1,"i1");
-        TestHostLecture(i1,5L,10D,-5D,10D);
+        TestHostLecture(i1,null,10D,-5D,10D);
     }
 
     @Test

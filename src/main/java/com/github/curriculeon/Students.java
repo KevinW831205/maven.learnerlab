@@ -1,6 +1,6 @@
 package com.github.curriculeon;
 
-public class Students extends People {
+public class Students extends People<Student> {
     final static Students INSTANCE = new Students();
 
 //    private Students(){
@@ -27,5 +27,10 @@ public class Students extends People {
 
     public static Students getINSTANCE() {
         return INSTANCE;
+    }
+
+    @Override
+    public Student[] toArray() {
+        return super.personList.toArray(new Student[0]);
     }
 }

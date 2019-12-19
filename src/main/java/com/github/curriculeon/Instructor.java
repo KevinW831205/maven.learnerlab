@@ -16,7 +16,7 @@ public class Instructor extends Person implements Teacher {
         if(numberOfHours>0){
             double numberOfHoursPerLearner = numberOfHours / learners.length;
             for (Learner l : learners) {
-                l.learn(numberOfHoursPerLearner);
+                teach(l, numberOfHours);
             }
         }
     }

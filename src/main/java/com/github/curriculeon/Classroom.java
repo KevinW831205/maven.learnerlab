@@ -14,21 +14,22 @@ public class Classroom {
     }
 
     public void hostLecture(Teacher teacher, Double numberOfHours) {
-        if (INSTRUCTORS.contains((Person) teacher)){
-            teacher.lecture((Learner[]) STUDENTS.toArray(), numberOfHours);
+        if (INSTRUCTORS.contains((Instructor)teacher)){
+            teacher.lecture(STUDENTS.toArray(), numberOfHours);
         }
     }
 
     public void hostLecture(long id, Double numberOfHours) {
-        Teacher instructor = (Teacher) INSTRUCTORS.findById(id);
+        Teacher instructor = INSTRUCTORS.findById(id);
+        System.out.println(instructor);
         if(instructor != null){
-            instructor.lecture((Learner[]) STUDENTS.toArray(), numberOfHours);
+            instructor.lecture(STUDENTS.toArray(), numberOfHours);
         }
     }
 
     public List<Double> getStudyMap() {
         List<Double> studyHours = new ArrayList<>();
-        for (Student student : (Student[]) STUDENTS.toArray()) {
+        for (Student student : STUDENTS.toArray()) {
             studyHours.add(student.getTotalStudyTime());
         }
         return studyHours;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-abstract public class People implements Iterable<Person>{
-    List<Person> personList;
+abstract public class People<somePerson extends Person> implements Iterable<somePerson>{
+    List<somePerson> personList;
 
-    public People(List<Person> personList) {
+    public People(List<somePerson> personList) {
         this.personList = personList;
     }
 
@@ -15,12 +15,12 @@ abstract public class People implements Iterable<Person>{
         this.personList = new ArrayList<>();
     }
 
-    public void add(Person person){
+    public void add(somePerson person){
         personList.add(person);
     }
 
-    public Person findById(long id){
-        for(Person p : personList){
+    public somePerson findById(long id){
+        for(somePerson p : personList){
             if(p.getId() == id){
                 return p;
             }
@@ -28,7 +28,7 @@ abstract public class People implements Iterable<Person>{
         return null;
     }
 
-    public boolean contains(Person person){
+    public boolean contains(somePerson person){
         return personList.contains(person);
     }
 
@@ -39,8 +39,8 @@ abstract public class People implements Iterable<Person>{
 //            }
 //        }
 
-        for(Iterator<Person> iterator = this.iterator(); iterator.hasNext();){
-            Person p = iterator.next();
+        for(Iterator<somePerson> iterator = this.iterator(); iterator.hasNext();){
+            somePerson p = iterator.next();
             if(p.getId() == id){
                 iterator.remove();
                 return;
@@ -48,7 +48,7 @@ abstract public class People implements Iterable<Person>{
         }
     }
 
-    public void remove(Person person){
+    public void remove(somePerson person){
         personList.remove(person);
     }
 
@@ -60,12 +60,10 @@ abstract public class People implements Iterable<Person>{
         return personList.size();
     }
 
-    public Person[] toArray(){
-        return personList.toArray(new Person[0]);
-    }
+    abstract public somePerson[] toArray();
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<somePerson> iterator() {
         return personList.iterator();
     }
 }
