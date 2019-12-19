@@ -9,7 +9,6 @@ public class TestStudents {
     public void TestStudentsExist(){
         //given
         Students STUDENTS = Students.getINSTANCE();
-        System.out.println(STUDENTS);
 
         Student s1 = new Student((long) 1, "s1");
         Student s2 = new Student((long) 2, "s2");
