@@ -28,5 +28,4 @@ public class Students extends People {
     public static Students getINSTANCE() {
         return INSTANCE;
     }
-
 }

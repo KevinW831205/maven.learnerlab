@@ -1,22 +1,40 @@
 package com.github.curriculeon;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Classroom {
-    Students STUDENTS;
-    Instructors INSTRUCTORS;
+    final static Classroom INSTANCE = new Classroom();
+    final private Students STUDENTS = Students.getINSTANCE();
+    final private Instructors INSTRUCTORS = Instructors.getINSTANCE();
+
+    private Classroom() {
+    }
 
     public void hostLecture(Teacher teacher, Double numberOfHours) {
-        teacher.lecture((Learner[]) STUDENTS.toArray(), numberOfHours);
+        if (INSTRUCTORS.contains((Person) teacher)){
+            teacher.lecture((Learner[]) STUDENTS.toArray(), numberOfHours);
+        }
     }
 
     public void hostLecture(long id, Double numberOfHours) {
         Teacher instructor = (Teacher) INSTRUCTORS.findById(id);
-        instructor.lecture((Learner[]) STUDENTS.toArray(), numberOfHours);
-
+        if(instructor != null){
+            instructor.lecture((Learner[]) STUDENTS.toArray(), numberOfHours);
+        }
     }
 
     public List<Double> getStudyMap() {
-        return null;
+        List<Double> studyHours = new ArrayList<>();
+        for (Student student : (Student[]) STUDENTS.toArray()) {
+            studyHours.add(student.getTotalStudyTime());
+        }
+        return studyHours;
+    }
+
+    public static Classroom getINSTANCE() {
+        return INSTANCE;
     }
 }

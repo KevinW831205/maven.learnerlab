@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class People implements Iterable<Person>{
+abstract public class People implements Iterable<Person>{
     List<Person> personList;
 
     public People(List<Person> personList) {
@@ -63,7 +63,6 @@ public class People implements Iterable<Person>{
     public Person[] toArray(){
         return personList.toArray(new Person[0]);
     }
-
 
     @Override
     public Iterator<Person> iterator() {
